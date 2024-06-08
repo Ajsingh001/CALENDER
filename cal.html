@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cal.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1> CALENDER</h1>
+        <header>
+            <div class="yearmonth"></div>
+            <div class="arrowz">
+                <button id="pre">&#8678;</button>
+                <button id="next">&#8680;</button>
+            </div>
+        </header>
+        <main>
+            <ul class="days">
+                <li>SUN</li>
+                <li>MON</li>
+                <li>TUE</li>
+                <li>WED</li>
+                <li>THU</li>
+                <li>FRI</li>
+                <li>SAT</li>
+            </ul>
+            <ul class="dates">
+            </ul>
+        </main>
+
+
+    </div>
+</body>
+<script>
+    "use strict"
+
+    let date = new Date();
+    console.log(date);
+    let Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let days = ["SUN", 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT',];
+    let today1 = date.getDate();
+    let todayday = date.getDay();
+    let currentmonth = date.getMonth();
+    let currentyear = date.getFullYear();
+
+    function calender() {
+        let todaydate = date.getDate();
+        let todayday = date.getDay();
+        let x = new Date(currentyear, currentmonth, today1).getDay();
+        let headdate = document.querySelector(".yearmonth").textContent = `${Months[currentmonth]} ${currentyear}`;
+        let lastdateofmonth = new Date(currentyear, currentmonth + 1, 0).getDate();
+        let firstdayofmonth = new Date(currentyear, currentmonth, 1).getDay();
+        let lastdayofmonth = new Date(currentyear, currentmonth, 0).getDay();
+        let lastdateoflastmonth = new Date(currentyear, currentmonth, 0).getDate();
+
+
+        let datelist = "";
+        for (let i = firstdayofmonth; i > 0; i--) {
+            datelist += `<li class="inactive">${lastdateoflastmonth - i + 1}</li>`;
+
+        };
+        for (let i = 1; i <= lastdateofmonth; i++) {
+            let today = i === todaydate && currentmonth == date.getMonth() && currentyear == date.getFullYear() ? "active" : "";
+            datelist += `<li class="${today}">${i}</li>`;
+        };
+
+        for (let i = lastdayofmonth; i < 6; i++) {
+            datelist += `<li class="inactive">${i - lastdayofmonth + 1}</li>`
+        };
+        document.querySelector(".dates").innerHTML = datelist;
+        document.querySelectorAll(".days li").forEach((e) => {
+            if (e.textContent == days[todayday] && e.textContent == days[x]) {
+                e.style.background = "red";
+                e.style.border = "2px solid white";
+            }
+            else {
+                e.style.background = "none";
+                e.style.border = "none";
+            }
+
+        });
+
+    }
+    calender();
+    document.querySelectorAll("button").forEach((e) => {
+        e.addEventListener("click", () => {
+            currentmonth = e.id === "pre" ? currentmonth - 1 : currentmonth + 1;
+            if (currentmonth > 0 || currentmonth < 11) {
+                date = new Date(currentyear, currentmonth)
+                currentmonth = date.getMonth();
+                currentyear = date.getFullYear();
+            }
+
+            calender();
+
+        })
+    })
+</script>
+
+</html>

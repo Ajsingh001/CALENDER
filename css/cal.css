@@ -1,0 +1,139 @@
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1200px;
+    height: 100vh;
+    margin: auto;
+    background-color: #6b21a8;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 22px;
+}
+
+.wrapper {
+    width: 50%;
+    border: 2px solid #fff;
+    background-color: #1d4ed8;
+    padding: 10px;
+    overflow: hidden;
+    height: 400px;
+
+}
+
+.yearmonth {
+    font-size: 32px;
+    color: #b91c1c;
+    font-weight: 700;
+    text-shadow: 2px 2px #000;
+}
+
+button {
+    padding: 0px 10px 0px 10px;
+    font-weight: 700;
+    font-size: 25px;
+    text-align: center;
+    border: none;
+    background-color: rgba(156, 163, 175, 0.4);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px #d97706;
+    color: #fff;
+    cursor: pointer;
+
+
+}
+
+button:first-child {
+    margin-right: 4px;
+}
+
+button:hover {
+    background-color: #fde047;
+    color: #be123c;
+}
+
+button:active {
+    background-color: #be123c;
+    color: #fff;
+
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    color: #f59e0b;
+    text-shadow: 2px 2px #ea580c;
+}
+
+
+ul {
+    list-style: none;
+}
+
+header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.days {
+    display: flex;
+    justify-content: center;
+    /* text-transform: uppercase; */
+}
+
+.days li {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: calc(100%/7);
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+
+}
+
+.dates {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dates li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: calc(100%/7);
+    position: relative;
+    padding:5px;
+    flex-wrap: wrap;
+    z-index: 0;
+    cursor: pointer;
+
+
+}
+
+.active::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: orangered;
+    color: aliceblue;
+    border: 2px solid;
+    z-index: -1;
+
+
+}
+
+.inactive {
+    color: rgb(217, 208, 208);
+}
